@@ -45,6 +45,19 @@ implements OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.buttonNewGame:
+                CurrPlayer = PLAYER1;
+                buttonTopLeft.setText("Button");
+                buttonTopMiddle.setText("Button");
+                buttonTopRight.setText("Button");
+                buttonMiddleLeft.setText("Button");
+                buttonCenter.setText("Button");
+                buttonMiddleLeft.setText("Button");
+                buttonMiddleRight.setText("Button");
+                buttonBottomLeft.setText("Button");
+                buttonBottomMiddle.setText(("Button"));
+                buttonBottomRight.setText("Button");
+                break;
             case R.id.buttonTopLeft:
                 if (buttonTopLeft.getText().toString().equals(PLAYER1) || buttonTopLeft.getText().toString().equals(PLAYER2)){
                     break;
@@ -107,6 +120,58 @@ implements OnClickListener{
                 }
                 else{
                     buttonCenter.setText(CurrPlayer);
+                    CurrPlayer = PLAYER1;
+                }
+                break;
+            case R.id.buttonMiddleRight:
+                if (buttonMiddleRight.getText().toString().equals(PLAYER1) || buttonMiddleRight.getText().toString().equals(PLAYER2)){
+                    break;
+                }
+                else if (CurrPlayer.equals(PLAYER1)){
+                    buttonMiddleRight.setText(PLAYER1);
+                    CurrPlayer = PLAYER2;
+                }
+                else{
+                    buttonMiddleRight.setText(CurrPlayer);
+                    CurrPlayer = PLAYER1;
+                }
+                break;
+            case R.id.buttonBottomLeft:
+                if (buttonBottomLeft.getText().toString().equals(PLAYER1) || buttonBottomLeft.getText().toString().equals(PLAYER2)){
+                    break;
+                }
+                else if (CurrPlayer.equals(PLAYER1)){
+                    buttonBottomLeft.setText(PLAYER1);
+                    CurrPlayer = PLAYER2;
+                }
+                else{
+                    buttonBottomLeft.setText(CurrPlayer);
+                    CurrPlayer = PLAYER1;
+                }
+                break;
+            case R.id.buttonBottomMiddle:
+                if (buttonBottomMiddle.getText().toString().equals(PLAYER1) || buttonBottomMiddle.getText().toString().equals(PLAYER2)){
+                    break;
+                }
+                else if (CurrPlayer.equals(PLAYER1)){
+                    buttonBottomMiddle.setText(PLAYER1);
+                    CurrPlayer = PLAYER2;
+                }
+                else{
+                    buttonBottomMiddle.setText(CurrPlayer);
+                    CurrPlayer = PLAYER1;
+                }
+                break;
+            case R.id.buttonBottomRight:
+                if (buttonBottomRight.getText().toString().equals(PLAYER1) || buttonBottomRight.getText().toString().equals(PLAYER2)){
+                    break;
+                }
+                else if (CurrPlayer.equals(PLAYER1)){
+                    buttonBottomRight.setText(PLAYER1);
+                    CurrPlayer = PLAYER2;
+                }
+                else{
+                    buttonBottomRight.setText(CurrPlayer);
                     CurrPlayer = PLAYER1;
                 }
                 break;
