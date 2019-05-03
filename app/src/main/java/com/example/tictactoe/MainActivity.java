@@ -55,7 +55,7 @@ implements OnClickListener{
                 buttonMiddleLeft.setText("Button");
                 buttonMiddleRight.setText("Button");
                 buttonBottomLeft.setText("Button");
-                buttonBottomMiddle.setText(("Button"));
+                buttonBottomMiddle.setText("Button");
                 buttonBottomRight.setText("Button");
                 break;
             case R.id.buttonTopLeft:
