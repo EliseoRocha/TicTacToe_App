@@ -40,11 +40,20 @@ implements OnClickListener{
         buttonBottomMiddle = (Button) findViewById(R.id.buttonBottomMiddle);
         buttonBottomRight = (Button) findViewById(R.id.buttonBottomRight);
         buttonNewGame = (Button) findViewById(R.id.buttonNewGame);
+        textView = (String) findViewById(R.id.textView);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.textView:
+                if (CurrPlayer.equals(PLAYER1)){
+                    textView.setText("X's turn");
+                }
+                else {
+                    textView.setText("O's turn");
+                }
+                break;
             case R.id.buttonNewGame:
                 CurrPlayer = PLAYER1;
                 buttonTopLeft.setText("Button");
@@ -58,8 +67,13 @@ implements OnClickListener{
                 buttonBottomMiddle.setText("Button");
                 buttonBottomRight.setText("Button");
                 break;
+
             case R.id.buttonTopLeft:
                 if (buttonTopLeft.getText().toString().equals(PLAYER1) || buttonTopLeft.getText().toString().equals(PLAYER2)){
+                    break;
+                }
+                else if (buttonTopLeft.equals(buttonTopMiddle) && buttonTopLeft.equals(buttonTopRight)){
+                    textView.setText(CurrPlayer + " Win's!");
                     break;
                 }
                 else if (CurrPlayer.equals(PLAYER1)){
