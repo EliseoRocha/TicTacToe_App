@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
 implements OnClickListener{
@@ -20,175 +21,144 @@ implements OnClickListener{
     private Button buttonBottomMiddle;
     private Button buttonBottomRight;
     private Button buttonNewGame;
+    private TextView textView;
 
     String PLAYER1 = "X";
     String PLAYER2 = "O";
-    String TURNCHECK = "Button";
     String CurrPlayer = PLAYER1;
+    Boolean GameOver = false;
+    Button CurrButton = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        buttonTopLeft = (Button) findViewById(R.id.buttonTopLeft);
-        buttonTopMiddle = (Button) findViewById(R.id.buttonTopMiddle);
-        buttonTopRight = (Button) findViewById(R.id.buttonTopRight);
-        buttonMiddleLeft = (Button) findViewById(R.id.buttonMiddleLeft);
-        buttonCenter = (Button) findViewById(R.id.buttonCenter);
-        buttonMiddleRight = (Button) findViewById(R.id.buttonMiddleRight);
-        buttonBottomLeft = (Button) findViewById(R.id.buttonBottomLeft);
-        buttonBottomMiddle = (Button) findViewById(R.id.buttonBottomMiddle);
-        buttonBottomRight = (Button) findViewById(R.id.buttonBottomRight);
-        buttonNewGame = (Button) findViewById(R.id.buttonNewGame);
-        textView = (String) findViewById(R.id.textView);
+        buttonTopLeft = findViewById(R.id.buttonTopLeft);
+        buttonTopMiddle = findViewById(R.id.buttonTopMiddle);
+        buttonTopRight = findViewById(R.id.buttonTopRight);
+        buttonMiddleLeft = findViewById(R.id.buttonMiddleLeft);
+        buttonCenter = findViewById(R.id.buttonCenter);
+        buttonMiddleRight = findViewById(R.id.buttonMiddleRight);
+        buttonBottomLeft = findViewById(R.id.buttonBottomLeft);
+        buttonBottomMiddle = findViewById(R.id.buttonBottomMiddle);
+        buttonBottomRight = findViewById(R.id.buttonBottomRight);
+        buttonNewGame = findViewById(R.id.buttonNewGame);
+        textView = findViewById(R.id.textView);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.textView:
-                if (CurrPlayer.equals(PLAYER1)){
-                    textView.setText("X's turn");
-                }
-                else {
-                    textView.setText("O's turn");
-                }
-                break;
             case R.id.buttonNewGame:
                 CurrPlayer = PLAYER1;
                 buttonTopLeft.setText("Button");
+                buttonTopLeft.setEnabled(true);
                 buttonTopMiddle.setText("Button");
+                buttonTopMiddle.setEnabled(true);
                 buttonTopRight.setText("Button");
+                buttonTopRight.setEnabled(true);
                 buttonMiddleLeft.setText("Button");
+                buttonMiddleLeft.setEnabled(true);
                 buttonCenter.setText("Button");
-                buttonMiddleLeft.setText("Button");
+                buttonCenter.setEnabled(true);
                 buttonMiddleRight.setText("Button");
+                buttonMiddleRight.setEnabled(true);
                 buttonBottomLeft.setText("Button");
+                buttonBottomLeft.setEnabled(true);
                 buttonBottomMiddle.setText("Button");
+                buttonBottomMiddle.setEnabled(true);
                 buttonBottomRight.setText("Button");
+                buttonBottomRight.setEnabled(true);
                 break;
 
             case R.id.buttonTopLeft:
-                if (buttonTopLeft.getText().toString().equals(PLAYER1) || buttonTopLeft.getText().toString().equals(PLAYER2)){
-                    break;
-                }
-                else if (buttonTopLeft.equals(buttonTopMiddle) && buttonTopLeft.equals(buttonTopRight)){
-                    textView.setText(CurrPlayer + " Win's!");
-                    break;
-                }
-                else if (CurrPlayer.equals(PLAYER1)){
-                    buttonTopLeft.setText(PLAYER1);
-                    CurrPlayer = PLAYER2;
-                }
-                else{
-                    buttonTopLeft.setText(CurrPlayer);
-                    CurrPlayer = PLAYER1;
-                }
+                CurrButton = buttonTopLeft;
+                CheckTurn();
                 break;
             case R.id.buttonTopMiddle:
-                if (buttonTopMiddle.getText().toString().equals(PLAYER1) || buttonTopMiddle.getText().toString().equals(PLAYER2)){
-                    break;
-                }
-                else if (CurrPlayer.equals(PLAYER1)){
-                    buttonTopMiddle.setText(PLAYER1);
-                    CurrPlayer = PLAYER2;
-                }
-                else{
-                    buttonTopMiddle.setText(CurrPlayer);
-                    CurrPlayer = PLAYER1;
-                }
+                CurrButton = buttonTopMiddle;
+                CheckTurn();
                 break;
             case R.id.buttonTopRight:
-                if (buttonTopRight.getText().toString().equals(PLAYER1) || buttonTopRight.getText().toString().equals(PLAYER2)){
-                    break;
-                }
-                else if (CurrPlayer.equals(PLAYER1)){
-                    buttonTopRight.setText(PLAYER1);
-                    CurrPlayer = PLAYER2;
-                }
-                else{
-                    buttonTopRight.setText(CurrPlayer);
-                    CurrPlayer = PLAYER1;
-                }
+                CurrButton = buttonTopRight;
+                CheckTurn();
                 break;
             case R.id.buttonMiddleLeft:
-                if (buttonMiddleLeft.getText().toString().equals(PLAYER1) || buttonMiddleLeft.getText().toString().equals(PLAYER2)){
-                    break;
-                }
-                else if (CurrPlayer.equals(PLAYER1)){
-                    buttonMiddleLeft.setText(PLAYER1);
-                    CurrPlayer = PLAYER2;
-                }
-                else{
-                    buttonMiddleLeft.setText(CurrPlayer);
-                    CurrPlayer = PLAYER1;
-                }
+                CurrButton = buttonMiddleLeft;
+                CheckTurn();
                 break;
             case R.id.buttonCenter:
-                if (buttonCenter.getText().toString().equals(PLAYER1) || buttonCenter.getText().toString().equals(PLAYER2)){
-                    break;
-                }
-                else if (CurrPlayer.equals(PLAYER1)){
-                    buttonCenter.setText(PLAYER1);
-                    CurrPlayer = PLAYER2;
-                }
-                else{
-                    buttonCenter.setText(CurrPlayer);
-                    CurrPlayer = PLAYER1;
-                }
+                CurrButton = buttonCenter;
+                CheckTurn();
                 break;
             case R.id.buttonMiddleRight:
-                if (buttonMiddleRight.getText().toString().equals(PLAYER1) || buttonMiddleRight.getText().toString().equals(PLAYER2)){
-                    break;
-                }
-                else if (CurrPlayer.equals(PLAYER1)){
-                    buttonMiddleRight.setText(PLAYER1);
-                    CurrPlayer = PLAYER2;
-                }
-                else{
-                    buttonMiddleRight.setText(CurrPlayer);
-                    CurrPlayer = PLAYER1;
-                }
+                CurrButton = buttonMiddleRight;
+                CheckTurn();
                 break;
             case R.id.buttonBottomLeft:
-                if (buttonBottomLeft.getText().toString().equals(PLAYER1) || buttonBottomLeft.getText().toString().equals(PLAYER2)){
-                    break;
-                }
-                else if (CurrPlayer.equals(PLAYER1)){
-                    buttonBottomLeft.setText(PLAYER1);
-                    CurrPlayer = PLAYER2;
-                }
-                else{
-                    buttonBottomLeft.setText(CurrPlayer);
-                    CurrPlayer = PLAYER1;
-                }
+                CurrButton = buttonBottomLeft;
+                CheckTurn();
                 break;
             case R.id.buttonBottomMiddle:
-                if (buttonBottomMiddle.getText().toString().equals(PLAYER1) || buttonBottomMiddle.getText().toString().equals(PLAYER2)){
-                    break;
-                }
-                else if (CurrPlayer.equals(PLAYER1)){
-                    buttonBottomMiddle.setText(PLAYER1);
-                    CurrPlayer = PLAYER2;
-                }
-                else{
-                    buttonBottomMiddle.setText(CurrPlayer);
-                    CurrPlayer = PLAYER1;
-                }
+                CurrButton = buttonBottomMiddle;
+                CheckTurn();
                 break;
             case R.id.buttonBottomRight:
-                if (buttonBottomRight.getText().toString().equals(PLAYER1) || buttonBottomRight.getText().toString().equals(PLAYER2)){
-                    break;
-                }
-                else if (CurrPlayer.equals(PLAYER1)){
-                    buttonBottomRight.setText(PLAYER1);
-                    CurrPlayer = PLAYER2;
-                }
-                else{
-                    buttonBottomRight.setText(CurrPlayer);
-                    CurrPlayer = PLAYER1;
-                }
+                CurrButton = buttonBottomRight;
+                CheckTurn();
                 break;
         }
+    }
+    public void CheckTurn(){
+        if (CurrButton.getText().toString().equals(PLAYER1) || CurrButton.getText().toString().equals(PLAYER2)){
+
+        }
+        else{
+            ChangeButton();
+            CheckWinner();
+        }
+    }
+
+    private void ChangeTurn() {
+        if (CurrPlayer.equals(PLAYER1)){
+            CurrPlayer = PLAYER2;
+            textView.setText(CurrPlayer + "'s Turn");
+        }
+        else{
+            CurrPlayer = PLAYER1;
+            textView.setText(CurrPlayer + "'s Turn");
+        }
+    }
+
+    private void ChangeButton() {
+        if (CurrPlayer.equals(PLAYER1)){
+            CurrButton.setText(PLAYER1);
+        }
+        else{
+            CurrButton.setText(PLAYER2);
+        }
+    }
+
+    private void CheckWinner() {
+        if (buttonTopLeft.getText().toString().equals(buttonTopMiddle.getText().toString())
+                && buttonTopLeft.getText().toString().equals(buttonTopRight.getText().toString())){
+            DisableButtons();
+            textView.setText(CurrPlayer + "'s Win!");
+        }
+        else{
+            ChangeTurn();
+        }
+    }
+
+    private void DisableButtons() {
+        buttonTopLeft.setEnabled(false);
+        buttonTopMiddle.setEnabled(false);
+        buttonTopRight.setEnabled(false);
+        buttonMiddleLeft.setEnabled(false);
+        buttonCenter.setEnabled(false);
+        buttonMiddleRight.setEnabled(false);
+        buttonBottomLeft.setEnabled(false);
+        buttonBottomMiddle.setEnabled(false);
+        buttonBottomRight.setEnabled(false);
     }
 }
