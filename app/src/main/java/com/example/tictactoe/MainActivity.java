@@ -26,7 +26,6 @@ implements OnClickListener{
     String PLAYER1 = "X";
     String PLAYER2 = "O";
     String CurrPlayer = PLAYER1;
-    Boolean GameOver = false;
     Button CurrButton = null;
 
     @Override
@@ -51,6 +50,7 @@ implements OnClickListener{
         switch (v.getId()) {
             case R.id.buttonNewGame:
                 CurrPlayer = PLAYER1;
+                textView.setText(CurrPlayer + "'s Turn");
                 buttonTopLeft.setText("Button");
                 buttonTopLeft.setEnabled(true);
                 buttonTopMiddle.setText("Button");
@@ -142,6 +142,11 @@ implements OnClickListener{
     private void CheckWinner() {
         if (buttonTopLeft.getText().toString().equals(buttonTopMiddle.getText().toString())
                 && buttonTopLeft.getText().toString().equals(buttonTopRight.getText().toString())){
+            DisableButtons();
+            textView.setText(CurrPlayer + "'s Win!");
+        }
+        else if (buttonMiddleLeft.getText().toString().equals(buttonCenter.getText().toString())
+                && buttonMiddleLeft.getText().toString().equals(buttonMiddleRight.getText().toString())){
             DisableButtons();
             textView.setText(CurrPlayer + "'s Win!");
         }
