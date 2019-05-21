@@ -1,11 +1,10 @@
 package com.example.tictactoe;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.view.View.OnClickListener;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
@@ -43,6 +42,7 @@ implements OnClickListener{
         buttonBottomRight = findViewById(R.id.buttonBottomRight);
         buttonNewGame = findViewById(R.id.buttonNewGame);
         textView = findViewById(R.id.textView);
+        NewGame();
     }
 
     @Override
@@ -110,7 +110,8 @@ implements OnClickListener{
         }
     }
     public void CheckTurn(){
-        if (CurrButton.getText().toString().equals(PLAYER1) || CurrButton.getText().toString().equals(PLAYER2)){
+        if (!CurrButton.getText().toString().equals("Button")
+                && CurrButton.getText().toString().equals(PLAYER1) || CurrButton.getText().toString().equals(PLAYER2)){
 
         }
         else{
@@ -140,19 +141,88 @@ implements OnClickListener{
     }
 
     private void CheckWinner() {
-        if (buttonTopLeft.getText().toString().equals(buttonTopMiddle.getText().toString())
+        if (!buttonTopLeft.getText().toString().equals("Button")
+                && buttonTopLeft.getText().toString().equals(buttonTopMiddle.getText().toString())
                 && buttonTopLeft.getText().toString().equals(buttonTopRight.getText().toString())){
             DisableButtons();
             textView.setText(CurrPlayer + "'s Win!");
         }
-        else if (buttonMiddleLeft.getText().toString().equals(buttonCenter.getText().toString())
+        else if (!buttonTopLeft.getText().toString().equals("Button")
+                && buttonTopLeft.getText().toString().equals(buttonMiddleLeft.getText().toString())
+                && buttonTopLeft.getText().toString().equals(buttonBottomLeft.getText().toString())){
+            DisableButtons();
+            textView.setText(CurrPlayer + "'s Win!");
+        }
+        else if (!buttonTopLeft.getText().toString().equals("Button")
+                && buttonTopLeft.getText().toString().equals(buttonCenter.getText().toString())
+                && buttonTopLeft.getText().toString().equals(buttonBottomRight.getText().toString())){
+            DisableButtons();
+            textView.setText(CurrPlayer + "'s Win!");
+        }
+        else if (!buttonMiddleLeft.getText().toString().equals("Button")
+                && buttonMiddleLeft.getText().toString().equals(buttonCenter.getText().toString())
                 && buttonMiddleLeft.getText().toString().equals(buttonMiddleRight.getText().toString())){
             DisableButtons();
             textView.setText(CurrPlayer + "'s Win!");
         }
+        else if (!buttonBottomLeft.getText().toString().equals("Button")
+                && buttonBottomLeft.getText().toString().equals(buttonBottomMiddle.getText().toString())
+                && buttonBottomLeft.getText().toString().equals(buttonBottomRight.getText().toString())){
+            DisableButtons();
+            textView.setText(CurrPlayer + "'s Win!");
+        }
+        else if (!buttonTopMiddle.getText().toString().equals("Button")
+                && buttonTopMiddle.getText().toString().equals(buttonCenter.getText().toString())
+                && buttonTopMiddle.getText().toString().equals(buttonBottomMiddle.getText().toString())){
+            DisableButtons();
+            textView.setText(CurrPlayer + "'s Win!");
+        }
+        else if (!buttonTopRight.getText().toString().equals("Button")
+                && buttonTopRight.getText().toString().equals(buttonMiddleRight.getText().toString())
+                && buttonTopRight.getText().toString().equals(buttonBottomRight.getText().toString())){
+            DisableButtons();
+            textView.setText(CurrPlayer + "'s Win!");
+        }
+        else if (!buttonTopRight.getText().toString().equals("Button")
+                && buttonTopRight.getText().toString().equals(buttonCenter.getText().toString())
+                && buttonTopRight.getText().toString().equals(buttonBottomLeft.getText().toString())){
+            DisableButtons();
+            textView.setText(CurrPlayer + "'s Win!");
+        }
+        else if (!buttonCenter.getText().toString().equals("Button")
+                && buttonCenter.getText().toString().equals(buttonTopMiddle.getText().toString())
+                && buttonCenter.getText().toString().equals(buttonBottomMiddle.getText().toString())){
+            DisableButtons();
+            textView.setText(CurrPlayer + "'s Win!");
+        }
+        else if (!buttonBottomMiddle.getText().toString().equals("Button")
+                && buttonBottomMiddle.getText().toString().equals(buttonCenter.getText().toString())
+                && buttonBottomMiddle.getText().toString().equals(buttonTopMiddle.getText().toString())){
+            DisableButtons();
+            textView.setText(CurrPlayer + "'s Win!");
+        }
+        else if(TieGame() == true){
+            DisableButtons();
+            textView.setText("Tie Game!");
+        }
         else{
             ChangeTurn();
         }
+    }
+
+    private boolean TieGame() {
+        if (!buttonTopLeft.getText().toString().equals("Button")
+                && !buttonTopMiddle.getText().toString().equals("Button")
+                && !buttonTopRight.getText().toString().equals("Button")
+                && !buttonMiddleLeft.getText().toString().equals("Button")
+                && !buttonCenter.getText().toString().equals("Button")
+                && !buttonMiddleRight.getText().toString().equals("Button")
+                && !buttonBottomLeft.getText().toString().equals("Button")
+                && !buttonBottomMiddle.getText().toString().equals("Button")
+                && !buttonBottomRight.getText().toString().equals("Button")){
+            return true;
+        }
+        return false;
     }
 
     private void DisableButtons() {
@@ -165,5 +235,10 @@ implements OnClickListener{
         buttonBottomLeft.setEnabled(false);
         buttonBottomMiddle.setEnabled(false);
         buttonBottomRight.setEnabled(false);
+    }
+
+    private void NewGame(){
+        CurrPlayer = PLAYER1;
+        textView.setText(CurrPlayer + "'s Turn");
     }
 }
