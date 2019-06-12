@@ -16,6 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.tictactoe.SettingsActivity"
+            android:label="Settings" >
+        </activity>
+        <activity
+            android:name="com.example.tictactoe.AboutActivity"
+            android:label="About"
+            android:theme="@style/DialogTheme">
+        </activity>
     </application>
 
 </manifest>
